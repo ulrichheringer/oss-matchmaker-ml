@@ -1,12 +1,12 @@
 # oss-matchmaker-ml
 
-Recomenda repositórios e issues de um catálogo sintético por similaridade textual; aceita histórico de interações para misturar sinais colaborativos.
+Recommends repositories and issues from a small catalog using text similarity, with a simple collaborative signal when interaction history is available.
 
-## Dados
+## Data
 
-O pipeline gera dados sintéticos determinísticos localmente, identificados como sintéticos em `pipeline.py`. Nenhum dado privado ou download externo é necessário. A divisão e a semente de avaliação são descritas junto às métricas abaixo.
+The catalog and user profiles are deterministic synthetic examples generated locally in `pipeline.py`. No private data or external download is required.
 
-## Instalação e execução
+## Install and run
 
 ```bash
 python -m venv .venv
@@ -18,8 +18,10 @@ python cli.py train --model model.joblib
 python cli.py predict --model model.joblib
 ```
 
-## Métricas obtidas
+## Evaluation results
 
-Seed 42: avaliação de recuperação por oito perfis sintéticos com temas conhecidos sobre catálogo de 24 itens — precision@5 **0,6000**, recall@5 **1,0000**. O recomendador usa TF-IDF por conteúdo; quando o input contém histórico suficiente para comparar usuários, mistura um sinal colaborativo simples. Os scores são medidos em um catálogo artificial e não predizem relevância real no GitHub.
+With seed 42, retrieval was evaluated for eight synthetic profiles against a 24-item catalog. Precision@5 was 0.6000 and recall@5 was 1.0000. The recommender uses TF-IDF for content matching and can blend in a simple collaborative signal when there is enough interaction history. These scores apply only to the artificial catalog; they do not predict relevance on GitHub.
 
-Limitação: dados e regras de geração simplificados; antes de uso real, substitua-os por dados com licença e proveniência adequadas e valide fora da amostra.
+## Limitations
+
+The catalog and profiles are small and synthetic. Real recommendations would need current repository and issue metadata, user-selected interests, and evaluation against actual feedback.
